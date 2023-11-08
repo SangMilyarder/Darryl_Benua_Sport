@@ -268,3 +268,9 @@ final List<ShopItem> items = [
     ShopItem("Logout", Icons.logout, "Kamu telah menekan tombol Logout", Colors.lime),
   ];
 ```
+
+3. **Mengubah warna tombol sesuai dengan warna yang ditentukan**
+- Ubahlah baris berikut di dalam Widget Build
+```dart
+color: item.color,
+```
