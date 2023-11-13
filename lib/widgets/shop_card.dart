@@ -14,7 +14,6 @@ class ShopItem {
 
 class ShopCard extends StatelessWidget {
   final ShopItem item;
-
   const ShopCard(this.item, {super.key}); // Constructor
 
   @override
