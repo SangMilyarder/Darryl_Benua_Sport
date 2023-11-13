@@ -279,9 +279,9 @@ color: item.color,
 
 ## Tugas 8
 
-## Perbedaan antara Navigator.push() dan Navigator.pushReplacement() di Flutter
+# Perbedaan antara Navigator.push() dan Navigator.pushReplacement() di Flutter
 
-# Navigator.push()
+## Navigator.push()
 
 Navigator.push berfungsi untuk menambahkan rute baru di atas stack navigasi, sambil mempertahankan rute sebelumnya dan ideal untuk digunakan ketika ingin menavigasi ke layar baru sambil mempertahankan layar sebelumnya, sehingga pengguna dapat kembali ke layar itu. Contoh penggunaanya, dalam aplikasi belanja, menavigasi dari daftar produk ke halaman detail produk
 - **Contoh**:
@@ -292,7 +292,7 @@ Navigator.push berfungsi untuk menambahkan rute baru di atas stack navigasi, sam
   );
   ```
 
-# Navigator.pushReplacement()
+## Navigator.pushReplacement()
 
 Navigator.pushReplacement() berfungsi untuk menggantikan rute saat ini dengan rute baru dan menghapus rute sebelumnya dari stack dan digunakan ketika ingin menavigasi ke layar baru dan mencegah pengguna kembali ke layar sebelumnya. Contoh penggunaannya seperti menavigasi dari layar login ke layar beranda setelah login berhasil
 - **Contoh**:
@@ -303,7 +303,7 @@ Navigator.pushReplacement() berfungsi untuk menggantikan rute saat ini dengan ru
   );
   ```
 
-## Widget Layout di Flutter dan Konteks Penggunaannya
+# Widget Layout di Flutter dan Konteks Penggunaannya
 
 **1. Column dan Row**
 
@@ -404,40 +404,40 @@ Berfungsi untuk menyelaraskan child di dalam dirinya dan secara opsional menguku
   )
   ```
 
-## Elemen Input Pada Form Yang Dipakai dan Alasannya
+# Elemen Input Pada Form Yang Dipakai dan Alasannya
 
 **TextFormField**
   - **Deskripsi**: Memungkinkan pengguna memasukkan nama produk golf, harga produk, jumlah stok produk, kategori produk, dan deskripsi produk
 
   - **Alasan Penggunaan**: Untuk memudahkan pengumpulan dan validasi input teks, validasi angka untuk memastikan bahwa input adalah numerik dan sesuai format, dan memudahkan dalam input teks panjang
 
-## Penerapan Clean Architecture Pada Aplikasi Flutter
+# Penerapan Clean Architecture Pada Aplikasi Flutter
 
-# Prinsip Dasar Clean Architecture
+## Prinsip Dasar Clean Architecture
 - **Independensi Terhadap Framework:** Memastikan aplikasi tidak bergantung secara langsung pada framework tertentu
 - **Uji Independen per Lapisan:** Setiap lapisan harus dapat diuji secara terpisah
 - **Independensi UI dari Logika Aplikasi:** UI harus terpisah dan tidak terpengaruh oleh logika bisnis aplikasi
 - **Independensi Database:** Perubahan pada database tidak boleh mempengaruhi logika bisnis
 
-# Pemisahan Aplikasi Menjadi Beberapa Layer
+## Pemisahan Aplikasi Menjadi Beberapa Layer
 - **Presentation Layer:** Menangani semua yang berkaitan dengan UI dan presentasi
 - **Domain Layer:** Inti dari logika bisnis aplikasi
 - **Data Layer:** Mengelola data, termasuk penyimpanan dan pengambilan data
 
-# Menetapkan Kontrak Antar Layer
+## Menetapkan Kontrak Antar Layer
 - **Interface:** Mendefinisikan bagaimana lapisan-lapisan berkomunikasi dan berinteraksi
 
-# Mengimplementasikan Use Cases atau Interactors
+## Mengimplementasikan Use Cases atau Interactors
 - **Encapsulation of Application Logic:** Mengenkapsulasi logika aplikasi ke dalam use cases atau interactors
 - **Action or Business Process Representation:** Setiap use case mewakili satu aksi atau proses bisnis
 
-# Mengelola State
+## Mengelola State
 - **Centralized and Consistent State Management:** Mengatur state aplikasi secara terpusat dan konsisten
 
-# Testing
+## Testing
 - **Independent Layer Testing:** Menulis dan menjalankan tes untuk setiap lapisan secara independen
 
-## Implementasi Checklist
+# Implementasi Checklist
   
 
 
