@@ -1,3 +1,5 @@
+## Tugas 7
+
 ## Perbedaan Stateless dan Stateful Widget dalam Flutter
 
 # Stateless Widget
@@ -274,3 +276,178 @@ final List<ShopItem> items = [
 ```dart
 color: item.color,
 ```
+
+## Tugas 8
+
+## Perbedaan antara Navigator.push() dan Navigator.pushReplacement() di Flutter
+
+# Navigator.push()
+
+Navigator.push berfungsi untuk menambahkan rute baru di atas stack navigasi, sambil mempertahankan rute sebelumnya dan ideal untuk digunakan ketika ingin menavigasi ke layar baru sambil mempertahankan layar sebelumnya, sehingga pengguna dapat kembali ke layar itu. Contoh penggunaanya, dalam aplikasi belanja, menavigasi dari daftar produk ke halaman detail produk
+- **Contoh**:
+  ```dart
+  Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => ProductDetailPage()),
+  );
+  ```
+
+# Navigator.pushReplacement()
+
+Navigator.pushReplacement() berfungsi untuk menggantikan rute saat ini dengan rute baru dan menghapus rute sebelumnya dari stack dan digunakan ketika ingin menavigasi ke layar baru dan mencegah pengguna kembali ke layar sebelumnya. Contoh penggunaannya seperti menavigasi dari layar login ke layar beranda setelah login berhasil
+- **Contoh**:
+  ```dart
+  Navigator.pushReplacement(
+    context,
+    MaterialPageRoute(builder: (context) => HomePage()),
+  );
+  ```
+
+## Widget Layout di Flutter dan Konteks Penggunaannya
+
+**1. Column dan Row**
+
+Widget ini berfungsi untuk mengatur childnya secara linier sepanjang sumbu vertikal (`Column`) dan horizontal (`Row`). Widget ini cocok digunakan untuk membuat layout linier, seperti formulir, toolbar, atau serangkaian tombol
+- contoh:
+  ```dart
+  Column(
+    children: <Widget>[
+      Text('Item 1'),
+      Text('Item 2'),
+    ],
+  )
+  ```
+
+**2. Container**
+
+Widget ini digunakan untuk styling, padding, margin, dan batasan. Widget ini cocok untuk membuat kotak dengan dekorasi, ukuran, atau styling tertentu ketika sebuah widget tunggal perlu distyling
+- contoh:
+  ```dart
+  Container(
+    padding: EdgeInsets.all(8.0),
+    color: Colors.blue,
+    child: Text('Halo Dunia'),
+  )
+  ```
+
+**3. Stack**
+
+Berfungsi untuk memungkinkan widget untuk bertumpuk satu sama lain dan digunakan untuk menumpuk widget, seperti meletakkan teks di atas gambar
+- contoh:
+  ```dart
+  Stack(
+    children: <Widget>[
+      Image.network('url'),
+      Text('Halo Dunia'),
+    ],
+  )
+  ```
+
+**4. ListView**
+
+Berfungsi untuk menampilkan daftar widget yang dapat di-scroll dan cocok digunakan untuk daftar panjang atau tak terbatas seperti feed berita yang dapat di-scroll atau daftar pesan
+- contoh:
+  ```dart
+  ListView(
+    children: <Widget>[
+      ListTile(title: Text('Item 1')),
+      ListTile(title: Text('Item 2')),
+    ],
+  )
+  ```
+
+**5. GridView**
+
+Berfungsi untuk menampilkan widget dalam grid dua dimensi dan biasanya digunakan untuk layout seperti galeri gambar
+- contoh:
+  ```dart
+  GridView.count(
+    crossAxisCount: 2,
+    children: <Widget>[
+      Text('Item 1'),
+      Text('Item 2'),
+    ],
+  ) 
+  ```
+
+**6. Expanded dan Flexible**
+
+Berfungsi untuk mengontrol bagaimana child dari Row, Column, atau Flex memperluas untuk mengisi ruang yang tersedia dan biasanya digunakan untuk mendistribusikan ruang dalam layout linier (Row/Column)
+- contoh:
+  ```dart
+  Row(
+    children: <Widget>[
+      Expanded(child: Text('Item 1')),
+      Expanded(child: Text('Item 2')),
+    ],
+  )
+  ```
+
+**7. Padding**
+
+Berfungsi untuk menambahkan padding di sekitar widget dan biasanya digunakan ketika perlu menambahkan ruang di sekitar widget untuk menghindari tampilan yang terlalu padat
+- contoh:
+  ```dart
+  Padding(
+    padding: EdgeInsets.all(8.0),
+    child: Text('Halo Dunia'),
+  )
+  ```
+
+**8. Align dan Center**
+
+Berfungsi untuk menyelaraskan child di dalam dirinya dan secara opsional mengukur dirinya berdasarkan ukuran child dan biasanya digunakan ketika perlu menyelaraskan sebuah widget, seperti memusatkan sebuah widget atau menyelaraskannya ke salah satu sisi layar
+- contoh:
+  ```dart
+  Center(
+    child: Text('Halo Dunia'),
+  )
+  ```
+
+## Elemen Input Pada Form Yang Dipakai dan Alasannya
+
+**TextFormField**
+  - **Deskripsi**: Memungkinkan pengguna memasukkan nama produk golf, harga produk, jumlah stok produk, kategori produk, dan deskripsi produk
+
+  - **Alasan Penggunaan**: Untuk memudahkan pengumpulan dan validasi input teks, validasi angka untuk memastikan bahwa input adalah numerik dan sesuai format, dan memudahkan dalam input teks panjang
+
+## Penerapan Clean Architecture Pada Aplikasi Flutter
+
+# Prinsip Dasar Clean Architecture
+- **Independensi Terhadap Framework:** Memastikan aplikasi tidak bergantung secara langsung pada framework tertentu
+- **Uji Independen per Lapisan:** Setiap lapisan harus dapat diuji secara terpisah
+- **Independensi UI dari Logika Aplikasi:** UI harus terpisah dan tidak terpengaruh oleh logika bisnis aplikasi
+- **Independensi Database:** Perubahan pada database tidak boleh mempengaruhi logika bisnis
+
+# Pemisahan Aplikasi Menjadi Beberapa Layer
+- **Presentation Layer:** Menangani semua yang berkaitan dengan UI dan presentasi
+- **Domain Layer:** Inti dari logika bisnis aplikasi
+- **Data Layer:** Mengelola data, termasuk penyimpanan dan pengambilan data
+
+# Menetapkan Kontrak Antar Layer
+- **Interface:** Mendefinisikan bagaimana lapisan-lapisan berkomunikasi dan berinteraksi
+
+# Mengimplementasikan Use Cases atau Interactors
+- **Encapsulation of Application Logic:** Mengenkapsulasi logika aplikasi ke dalam use cases atau interactors
+- **Action or Business Process Representation:** Setiap use case mewakili satu aksi atau proses bisnis
+
+# Mengelola State
+- **Centralized and Consistent State Management:** Mengatur state aplikasi secara terpusat dan konsisten
+
+# Testing
+- **Independent Layer Testing:** Menulis dan menjalankan tes untuk setiap lapisan secara independen
+
+## Implementasi Checklist
+  
+
+
+
+
+
+
+
+
+
+
+
+
