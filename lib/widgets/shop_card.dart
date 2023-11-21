@@ -16,7 +16,8 @@ class ShopItem {
 
 class ShopCard extends StatelessWidget {
   final ShopItem item;
-  const ShopCard(this.item, {super.key}); // Constructor
+  final int id;
+  const ShopCard(this.item, this.id, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -32,14 +33,14 @@ class ShopCard extends StatelessWidget {
             ..showSnackBar(SnackBar(content: Text(item.snackBarText),));
           if (item.name == "Tambah Item") {
             Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const ShopFormPage()));
+              MaterialPageRoute(builder: (context) => ShopFormPage(id: id)));
           } else if (item.name == "Lihat Item") {
             Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const ProductPage()));
+              MaterialPageRoute(builder: (context) => ProductPage(id: id)));
           } else if (item.name == "Logout") {
             final response = await request.logout(
                 // TODO: Ganti URL dan jangan lupa tambahkan trailing slash (/) di akhir URL!
-                "http://localhost:8000/auth/logout/");
+                "https://darryl-nawawi-tugas.pbp.cs.ui.ac.id/auth/logout/");
             String message = response["message"];
             if (response['status']) {
               String uname = response["username"];

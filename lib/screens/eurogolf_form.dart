@@ -7,7 +7,8 @@ import 'package:darryl_benua_sport/screens/menu.dart';
 import 'package:darryl_benua_sport/widgets/left_drawer.dart';
 
 class ShopFormPage extends StatefulWidget {
-    const ShopFormPage({super.key});
+    final int id;
+    const ShopFormPage({super.key, required this.id});
 
     @override
     State<ShopFormPage> createState() => _ShopFormPageState();
@@ -23,6 +24,7 @@ class _ShopFormPageState extends State<ShopFormPage> {
 
     @override
     Widget build(BuildContext context) {
+      final int id = widget.id;
       final request = context.watch<CookieRequest>();
         return Scaffold(
           appBar: AppBar(
@@ -34,7 +36,7 @@ class _ShopFormPageState extends State<ShopFormPage> {
             backgroundColor: Colors.indigo,
             foregroundColor: Colors.white,
           ),
-          drawer: const LeftDrawer(),
+          drawer: LeftDrawer(id: id),
           body: Form(
             key: _formKey,
             child: SingleChildScrollView(
@@ -102,7 +104,7 @@ class _ShopFormPageState extends State<ShopFormPage> {
                       ),
                       onChanged: (String? value) {
                         setState(() {
-                          _price = int.parse(value!);
+                          _amount = int.parse(value!);
                         });
                       },
                       validator: (String? value) {
@@ -128,7 +130,7 @@ class _ShopFormPageState extends State<ShopFormPage> {
                       ),
                       onChanged: (String? value) {
                         setState(() {
-                          _description = value!;
+                          _category = value!;
                         });
                       },
                       validator: (String? value) {
@@ -176,7 +178,7 @@ class _ShopFormPageState extends State<ShopFormPage> {
                               // Kirim ke Django dan tunggu respons
                               // TODO: Ganti URL dan jangan lupa tambahkan trailing slash (/) di akhir URL!
                               final response = await request.postJson(
-                              "http://localhost:8000/create-flutter/",
+                              "https://darryl-nawawi-tugas.pbp.cs.ui.ac.id/create-flutter/",
                               jsonEncode(<String, String>{
                                   'name': _name,
                                   'price': _price.toString(),
@@ -192,7 +194,7 @@ class _ShopFormPageState extends State<ShopFormPage> {
                                   ));
                                   Navigator.pushReplacement(
                                       context,
-                                      MaterialPageRoute(builder: (context) => MyHomePage()),
+                                      MaterialPageRoute(builder: (context) => MyHomePage(id : id)),
                                   );
                               } else {
                                   ScaffoldMessenger.of(context)

@@ -20,6 +20,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
 
   @override
   Widget build(BuildContext context) {
+    // ignore: unused_local_variable
     final request = context.watch<CookieRequest>();
     return Scaffold(
       appBar: AppBar(
@@ -113,7 +114,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                       }
 
                       final response = await http.post(
-                        Uri.parse('http://localhost:8000/auth/register/'),
+                        Uri.parse('https://darryl-nawawi-tugas.pbp.cs.ui.ac.id/auth/register/'),
                         body: {
                           'username': username,
                           'password': password,

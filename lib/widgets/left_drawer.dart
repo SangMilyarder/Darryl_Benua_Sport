@@ -4,7 +4,8 @@ import 'package:darryl_benua_sport/screens/menu.dart';
 import 'package:darryl_benua_sport/screens/eurogolf_form.dart';
 
 class LeftDrawer extends StatelessWidget {
-  const LeftDrawer({super.key});
+  final int id;
+  const LeftDrawer({super.key, required this.id});
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +47,7 @@ class LeftDrawer extends StatelessWidget {
               Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => MyHomePage(),
+                    builder: (context) => MyHomePage(id: id),
                   ));
             },
           ),
@@ -56,7 +57,7 @@ class LeftDrawer extends StatelessWidget {
             // Bagian redirection ke ShopFormPage
             onTap: () {
               Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => ShopFormPage()),
+                MaterialPageRoute(builder: (context) => ShopFormPage(id: id)),
               );
             },
           ),
@@ -64,7 +65,7 @@ class LeftDrawer extends StatelessWidget {
             leading: const Icon(Icons.checklist),
             title: Text('Lihat Produk'),
             onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => const ProductPage()),
+              Navigator.push(context, MaterialPageRoute(builder: (context) => ProductPage(id: id)),
           );}
           ),
         ],

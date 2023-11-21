@@ -3,7 +3,8 @@ import 'package:darryl_benua_sport/widgets/left_drawer.dart';
 import 'package:darryl_benua_sport/widgets/shop_card.dart';
 
 class MyHomePage extends StatelessWidget {
-    MyHomePage({Key? key}) : super(key: key);
+    final int id;
+    MyHomePage({Key? key, required this.id}) : super(key: key);
     final List<ShopItem> items = [
     ShopItem("Lihat Item", Icons.checklist, "Kamu telah menekan tombol Lihat Item", Colors.cyan),
     ShopItem("Tambah Item", Icons.add_shopping_cart, "Kamu telah menekan tombol Tambah Item", Colors.deepPurple),
@@ -18,7 +19,7 @@ class MyHomePage extends StatelessWidget {
               'Euro Golf',
             ),
           ),
-          drawer: const LeftDrawer(),
+          drawer: LeftDrawer(id: id),
           body: SingleChildScrollView(
             // Widget wrapper yang dapat discroll
             child: Padding(
@@ -49,7 +50,7 @@ class MyHomePage extends StatelessWidget {
                     shrinkWrap: true,
                     children: items.map((ShopItem item) {
                       // Iterasi untuk setiap item
-                      return ShopCard(item);
+                      return ShopCard(item, id);
                     }).toList(),
                   ),
                 ],
