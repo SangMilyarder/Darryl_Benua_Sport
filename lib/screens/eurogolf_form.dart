@@ -1,5 +1,9 @@
-import 'package:darryl_benua_sport/models/eurogolf.dart';
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:provider/provider.dart';
+import 'package:darryl_benua_sport/screens/menu.dart';
 import 'package:darryl_benua_sport/widgets/left_drawer.dart';
 
 class ShopFormPage extends StatefulWidget {
@@ -11,15 +15,20 @@ class ShopFormPage extends StatefulWidget {
 
 class _ShopFormPageState extends State<ShopFormPage> {
     final _formKey = GlobalKey<FormState>();
-    Iron _ironlist = Iron(name: '', price: 0, amount: 0, category: '', description: '');
+    String _name = "";
+    int _price = 0;
+    int _amount = 0;
+    String _category = "";
+    String _description = "";
 
     @override
     Widget build(BuildContext context) {
+      final request = context.watch<CookieRequest>();
         return Scaffold(
           appBar: AppBar(
             title: const Center(
               child: Text(
-                'Form Tambah Item',
+                'Form Tambah Produk',
               ),
             ),
             backgroundColor: Colors.indigo,
@@ -36,21 +45,15 @@ class _ShopFormPageState extends State<ShopFormPage> {
                     padding: const EdgeInsets.all(8.0),
                     child: TextFormField(
                       decoration: InputDecoration(
-                        hintText: "Name",
-                        labelText: "Name",
+                        hintText: "Nama Produk",
+                        labelText: "Nama Produk",
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(5.0),
                         ),
                       ),
                       onChanged: (String? value) {
                         setState(() {
-                          _ironlist = Iron(
-                            name: value!,
-                            price: _ironlist.price,
-                            amount: _ironlist.amount,
-                            category: _ironlist.category,
-                            description: _ironlist.description,
-                          );
+                          _name = value!;
                         });
                       },
                       validator: (String? value) {
@@ -65,29 +68,23 @@ class _ShopFormPageState extends State<ShopFormPage> {
                     padding: const EdgeInsets.all(8.0),
                     child: TextFormField(
                       decoration: InputDecoration(
-                        hintText: "Price",
-                        labelText: "Price",
+                        hintText: "Harga",
+                        labelText: "Harga",
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(5.0),
                         ),
                       ),
                       onChanged: (String? value) {
                         setState(() {
-                          _ironlist = Iron(
-                            name: _ironlist.name,
-                            price: int.tryParse(value!) ?? 0,
-                            amount: _ironlist.amount,
-                            category: _ironlist.category,
-                            description: _ironlist.description,
-                          );
+                          _price = int.parse(value!);
                         });
                       },
                       validator: (String? value) {
                         if (value == null || value.isEmpty) {
-                          return "Price tidak boleh kosong!";
+                          return "Harga tidak boleh kosong!";
                         }
                         if (int.tryParse(value) == null) {
-                          return "Price harus berupa angka!";
+                          return "Harga harus berupa angka!";
                         }
                         return null;
                       },
@@ -97,29 +94,23 @@ class _ShopFormPageState extends State<ShopFormPage> {
                     padding: const EdgeInsets.all(8.0),
                     child: TextFormField(
                       decoration: InputDecoration(
-                        hintText: "Amount",
-                        labelText: "Amount",
+                        hintText: "Jumlah Item",
+                        labelText: "Jumlah Item",
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(5.0),
                         ),
                       ),
                       onChanged: (String? value) {
                         setState(() {
-                          _ironlist = Iron(
-                            name: _ironlist.name,
-                            price: _ironlist.price,
-                            amount: int.tryParse(value!) ?? 0,
-                            category: _ironlist.category,
-                            description: _ironlist.description,
-                          );
+                          _price = int.parse(value!);
                         });
                       },
                       validator: (String? value) {
                         if (value == null || value.isEmpty) {
-                          return "Amount tidak boleh kosong!";
+                          return "Jumlah item tidak boleh kosong!";
                         }
                         if (int.tryParse(value) == null) {
-                          return "Amount harus berupa angka!";
+                          return "Jumlah item harus berupa angka!";
                         }
                         return null;
                       },
@@ -137,13 +128,7 @@ class _ShopFormPageState extends State<ShopFormPage> {
                       ),
                       onChanged: (String? value) {
                         setState(() {
-                          _ironlist = Iron(
-                            name: _ironlist.name,
-                            price: _ironlist.price,
-                            amount: _ironlist.amount,
-                            category: value!,
-                            description: _ironlist.description,
-                          );
+                          _description = value!;
                         });
                       },
                       validator: (String? value) {
@@ -158,21 +143,15 @@ class _ShopFormPageState extends State<ShopFormPage> {
                     padding: const EdgeInsets.all(8.0),
                     child: TextFormField(
                       decoration: InputDecoration(
-                        hintText: "Description",
-                        labelText: "Description",
+                        hintText: "Deskripsi",
+                        labelText: "Deskripsi",
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(5.0),
                         ),
                       ),
                       onChanged: (String? value) {
                         setState(() {
-                          _ironlist = Iron(
-                            name: _ironlist.name,
-                            price: _ironlist.price,
-                            amount: _ironlist.amount,
-                            category: _ironlist.category,
-                            description: value!,
-                          );
+                          _description = value!;
                         });
                       },
                       validator: (String? value) {
@@ -187,82 +166,54 @@ class _ShopFormPageState extends State<ShopFormPage> {
                     alignment: Alignment.bottomCenter,
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child : Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          ElevatedButton(
-                            style: ButtonStyle(
-                              backgroundColor: MaterialStateProperty.all(Colors.grey),
-                            ),
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                            child: const Text(
-                              "Cancel",
-                              style: TextStyle(color: Colors.white),
-                            ),
-                          ),
-                          ElevatedButton(
-                            style: ButtonStyle(
-                              backgroundColor:
-                                MaterialStateProperty.all(Colors.indigo),
-                            ),
-                            onPressed: () {
-                              if (_formKey.currentState!.validate()) {
-                                String tempName = _ironlist.name;
-                                int tempPrice = _ironlist.price;
-                                int tempAmount = _ironlist.amount;
-                                String tempCategory = _ironlist.category;
-                                String tempDescription = _ironlist.description;
-                                Ironlist.add(_ironlist);
-                                showDialog(
-                                  context: context,
-                                  builder: (context) {
-                                    return AlertDialog(
-                                      title: const Text('Item berhasil tersimpan'),
-                                      content: SingleChildScrollView(
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text('Name: $tempName'),
-                                            Text('Price: $tempPrice'),
-                                            Text('Amount: $tempAmount'),
-                                            Text('Category: $tempCategory'),
-                                            Text('Description: $tempDescription'),
-                                          ],
-                                        ),
-                                      ),
-                                      actions: [
-                                       TextButton(
-                                      child: const Text('OK'),
-                                      onPressed: () {
-                                        Navigator.pop(context);
-                                      },
-                                    ),
-                                  ],
-                                );
-                              },
-                            );
+                      child: ElevatedButton(
+                        style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.all(Colors.indigo),
+                        ),
+                        onPressed: () async {
+                          if (_formKey.currentState!.validate()) {
+                              // Kirim ke Django dan tunggu respons
+                              // TODO: Ganti URL dan jangan lupa tambahkan trailing slash (/) di akhir URL!
+                              final response = await request.postJson(
+                              "http://localhost:8000/create-flutter/",
+                              jsonEncode(<String, String>{
+                                  'name': _name,
+                                  'price': _price.toString(),
+                                  'amount': _amount.toString(),
+                                  'category': _category,
+                                  'description': _description,
+                                  // TODO: Sesuaikan field data sesuai dengan aplikasimu
+                              }));
+                              if (response['status'] == 'success') {
+                                  ScaffoldMessenger.of(context)
+                                      .showSnackBar(const SnackBar(
+                                  content: Text("Produk baru berhasil disimpan!"),
+                                  ));
+                                  Navigator.pushReplacement(
+                                      context,
+                                      MaterialPageRoute(builder: (context) => MyHomePage()),
+                                  );
+                              } else {
+                                  ScaffoldMessenger.of(context)
+                                      .showSnackBar(const SnackBar(
+                                      content:
+                                          Text("Terdapat kesalahan, silakan coba lagi."),
+                                  ));
+                              }
                           }
-                          _formKey.currentState!.reset();
-                          setState(() {
-                            _ironlist = Iron(name: '', price: 0, amount: 0, category: '', description: '');
-                          });
-                        },
+                      },
                         child: const Text(
                           "Save",
                           style: TextStyle(color: Colors.white),
                         ),
                       ),
-                    ]
+                    ),
                   ),
-                ),
-              ),
-            ]
-          )
-        ),
-      ),
-    );
-  }
+                ],
+              )
+            ),
+          ),
+        );
+    }
 }

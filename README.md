@@ -277,9 +277,9 @@ final List<ShopItem> items = [
 color: item.color,
 ```
 
-## Tugas 8
+# Tugas 8
 
-# Perbedaan antara Navigator.push() dan Navigator.pushReplacement() di Flutter
+## Perbedaan antara Navigator.push() dan Navigator.pushReplacement() di Flutter
 
 ## Navigator.push()
 
@@ -1472,3 +1472,51 @@ Berfungsi untuk menyelaraskan child di dalam dirinya dan secara opsional menguku
   )
   ...
   ```
+
+# Tugas 9
+
+# Pengambilan Data JSON Tanpa Model
+
+Ya, dalam Flutter, kita dapat mengambil data JSON tanpa membuat model kelas terlebih dahulu. Ini dapat dilakukan dengan menggunakan struktur data dinamis seperti Map atau List
+
+## Kelebihan dan Kekurangan
+
+**Kelebihan:**
+- Fleksibilitas: Lebih fleksibel dalam menangani struktur data yang berubah-ubah
+- Pengembangan yang Cepat: Mengurangi waktu yang dibutuhkan untuk mendefinisikan model
+
+**Kekurangan:**
+- Risiko Kesalahan: Lebih berisiko terhadap kesalahan runtime akibat tipe data yang tidak konsisten
+- Kurangnya Struktur: Kode menjadi kurang terstruktur dan sulit dipahami
+- Kurangnya Validasi: Tidak ada validasi pada struktur data yang diterima
+
+# Fungsi dari CookieRequest
+
+## Definisi
+
+CookieRequest adalah sebuah mekanisme dalam Flutter untuk mengelola cookies dalam permintaan HTTP, khususnya dalam konteks autentikasi
+
+## Kegunaan
+- **Pengelolaan Sesi:** Mengelola cookies yang digunakan untuk menjaga sesi pengguna
+- **Keamanan:** Membantu dalam aspek keamanan dengan mengelola cookies autentikasi
+
+## Pentingnya Bagi Aplikasi Flutter
+- **Konsistensi Sesi:** Memastikan bahwa sesi pengguna tetap konsisten di seluruh komponen aplikasi
+- **Pengelolaan State:** Membantu dalam pengelolaan state yang berhubungan dengan status login pengguna
+
+# Mekanisme Pengambilan Data JSON
+
+- **Permintaan HTTP:** Mengirimkan permintaan HTTP ke server (misalnya, Django) menggunakan paket seperti http
+- **Mendapatkan Respons:** Menerima respons dalam format JSON dari server
+- **Parsing JSON:** Mengubah data JSON menjadi struktur data Dart (Map/List atau model)
+- **Penggunaan Data:** Menggunakan data yang telah diparsing untuk ditampilkan di UI
+
+# Mekanisme Autentikasi dari Flutter ke Django
+
+- **Input Data:** Pengguna memasukkan data akun (username/password) di Flutter
+- **Kirim Data:** Data akun dikirim ke Django melalui permintaan HTTP
+- **Proses Autentikasi:** Django memproses data dan melakukan autentikasi
+- **Respons Autentikasi:** Django mengirimkan respons (sukses/gagal)
+- **Tampilan Menu:** Jika autentikasi berhasil, menu ditampilkan di Flutter
+
+

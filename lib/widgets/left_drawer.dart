@@ -2,7 +2,6 @@ import 'package:darryl_benua_sport/screens/golf_list.dart';
 import 'package:flutter/material.dart';
 import 'package:darryl_benua_sport/screens/menu.dart';
 import 'package:darryl_benua_sport/screens/eurogolf_form.dart';
-import 'package:darryl_benua_sport/models/eurogolf.dart';
 
 class LeftDrawer extends StatelessWidget {
   const LeftDrawer({super.key});
@@ -65,9 +64,9 @@ class LeftDrawer extends StatelessWidget {
             leading: const Icon(Icons.checklist),
             title: Text('Lihat Produk'),
             onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => ProductListPage(iron: Ironlist)));
-            }
-          )
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const ProductPage()),
+          );}
+          ),
         ],
       ),
     );
