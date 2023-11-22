@@ -1519,6 +1519,29 @@ CookieRequest adalah sebuah mekanisme dalam Flutter untuk mengelola cookies dala
 - **Respons Autentikasi:** Django mengirimkan respons (sukses/gagal)
 - **Tampilan Menu:** Jika autentikasi berhasil, menu ditampilkan di Flutter
 
+# Widget yang Digunakan di tugas ini
+
+- **Scaffold:** Untuk mengatur dasar aplikasi dengan AppBar, Drawer, dan body
+- **Form:** Untuk mengatur form untuk input data item
+- **TextFormField:** Widget input teks untuk mengumpulkan data, seperti nama item, jumlah, harga, dan deskripsi
+- **ElevatedButton:** Tombol elevated yang digunakan untuk menyimpan data item yang dimasukkan
+- **SnackBar:** Untuk menampilkan notifikasi setelah berhasil menyimpan item atau jika terdapat kesalahan
+- **FutureBuilder:** Untuk mengelola tampilan berdasarkan status future untuk mendapatkan dan menampilkan data item secara asinkronus
+- **ListView.builder:** Untuk menampilkan daftar item dalam bentuk list yang dapat di-scroll
+- **ListView:** Untuk menampilkan daftar opsi menu dalam drawer
+- **Provider:** Untuk menyediakan instance CookieRequest ke seluruh aplikasi menggunakan Provider
+- **Column:** Untuk menyusun widget secara vertikal
+- **GridView.count:** Untuk menampilkan daftar item dalam grid layout
+- **ShopCard:** Widget custom untuk menampilkan setiap item dalam bentuk card
+- **Material:** Mengatur warna background item di dalam grid.
+- **InkWell:** Widget responsif terhadap sentuhan pengguna.
+- **Icon:** Untuk menampilkan ikon item
+- **Text:** Untuk menampilkan nama item
+- **ListTile:** Untuk membuat opsi menu dalam drawer
+- **Navigator:** Bertanggung jawab untuk menavigasi antar halaman dalam aplikasi
+- **Card:** Untuk menampilkan list barang user dalam bentuk card
+- **MaterialApp:** Widget root yang menentukan tema dan halaman awal aplikasi
+
 # Implementasi Checklist
 
 ## Membuat Halaman Login
